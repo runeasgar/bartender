@@ -24,19 +24,17 @@ use Drupal\Core\Session\UserSession;
 OOP: Classes, Properties, Methods, Interfaces, Abstraction
   If you haven't read up on classes, read these. They'll be relevant to a LOT of what you see here.
   http://www.lornajane.net/posts/2012/introduction-to-php-oop
-  http://www.lornajane.net/posts/2012/a-little-more-oop-in-php */
+  http://www.lornajane.net/posts/2012/a-little-more-oop-in-php
 
-/* LEARN THIS!
 Interfaces
   An interface is like a required blueprint for a class. It will contain functions that an implementing class
-    MUST implement. */
+    MUST implement.
 
-/* LEARN THIS!
-Controllers
+MVC: Models, Views, Controllers
   If you haven't read up on MVC, read this:
   http://www.sitepoint.com/the-mvc-pattern-and-php-1 */
 
-/* This is the class that will do most of the non-hook "work" for our module.
+/* This is the controller that will do most of the non-hook "work" for our module.
 It implements ContainerInjectionInterface so we can get information about the user. */
 class BartenderController implements ContainerInjectionInterface {
 
@@ -45,10 +43,9 @@ class BartenderController implements ContainerInjectionInterface {
     Properties are essentially class-bound variables.
     Public: Modifiable by other objects via $myBartenderController->user = $whatever;
     Private: Not modifiable in that manner, at all.
-    Protected: Modifiable by children (classes that extend this one).
-  */
+    Protected: Modifiable by children (classes that extend this one). */
 
-  // We'll store our dependency-injected UserSession object here so many methods
+  // We'll store our dependency-injected UserSession object here so many methods can access it.
   protected $user;
 
   /* This special function is called when instantiating a new object - it's an OOP thing.
@@ -59,15 +56,22 @@ class BartenderController implements ContainerInjectionInterface {
    * @param $user
    */
   public function __construct(UserSession $user) {
+
+    // Here, we're just assigning the $user parameter that is passed in to the $user property we made earlier.
     $this->user = $user;
+
   }
 
-  // This is the function that the routing system will use to request instantiation our object.
+  /* This special function is what the routing system will use to request instantiation our object.
+  TO DO - Figure out what these special comments mean and what they do.. annotations? */
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
 
+    /* Here, we're getting and passing the container's current user object into an instantiation
+      of our object (__construct). If this seems a little cyclical, it's because it is.
+      This is the essence of dependency injection in Drupal 8. */
     return new static($container->get('current_user'));
 
   }
