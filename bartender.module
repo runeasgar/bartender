@@ -13,6 +13,7 @@ function bartender_menu() {
   return $items;
 }
 
+// Same as Drupal 7.
 /**
  * Implements hook_permission().
  */

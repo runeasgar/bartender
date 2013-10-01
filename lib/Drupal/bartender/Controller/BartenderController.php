@@ -52,7 +52,7 @@ class BartenderController implements ContainerInjectionInterface {
   protected $user;
 
   /* This special function is called when instantiating a new object - it's an OOP thing.
-  TO DO: Figure out what these special comments mean and what they do.. annotations? */
+  TO DO - Figure out what these special comments mean and what they do.. annotations? */
   /**
    * Constructs a \Drupal\bartender\Controller\BartenderController object.
    *
