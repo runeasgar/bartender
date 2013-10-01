@@ -1,11 +1,16 @@
+# yourmodule.routing.yml defines "routes" and information about routes.
+# Routes must still also be declared using hook_menu, but this yml file handles most of the info.
+
+# This route will define the home experience for bartender.
 bartender.home:
   # According to https://drupal.org/node/2051097 this should be path,
   # but path results in "Notice" errors and in a non-functioning path.
   pattern: '/bartender/home'
   defaults:
     # This points to the function that delivers the content for the route.
-    # It uses namespacing, not file path. The function is apparently called staticly?
+    # It uses namespacing, not file path. Not sure why it's called staticly.
     _content: '\Drupal\bartender\Controller\BartenderController::home'
   requirements:
-    # This is how we restrict access to the route.
-    _permission: 'access content'
+    # This is how we restrict access to the route to a particular permission.
+    # BROKEN - Anonymous users don't have access even though I've flipped that permission.
+    _permission: 'Use bartender'

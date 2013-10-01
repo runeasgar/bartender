@@ -1,11 +1,28 @@
 <?php
 
-// Similar to Drupal 7, but we point to a route_name.
-// Also, many things are controlled through the routing, not here (e.g., permissions).
+/* Similar to Drupal 7, but we point to a route_name.
+Also, many things are controlled through the routing, not here (e.g., permissions). */
+/**
+ * Implements hook_menu().
+ */
 function bartender_menu() {
   $items['bartender/home'] = array(
     'title' => 'Welcome to Bartender',
     'route_name' => 'bartender.home'
   );
   return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function bartender_permission() {
+  return array(
+    'use bartender' => array(
+      'title' => t('Use bartender'),
+    ),
+    'administer bartender' => array(
+      'title' => t('Administer bartender'),
+    ),
+  );
 }
