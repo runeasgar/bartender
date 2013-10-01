@@ -19,6 +19,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 // This is the object type that we're grabbing from the container.
 use Drupal\Core\Session\UserSession;
+// TO DO - Describe these
+use Symfony\Component\HttpFoundation\Request;
+use Drupal\Core\Config\ConfigFactory;
 
 /* LEARN THIS!
 OOP: Classes, Properties, Methods, Interfaces, Abstraction
@@ -45,20 +48,22 @@ class BartenderController implements ContainerInjectionInterface {
     Private: Not modifiable in that manner, at all.
     Protected: Modifiable by children (classes that extend this one). */
 
-  // We'll store our dependency-injected UserSession object here so many methods can access it.
+  // We'll store our dependency-injected objects here so many methods can access them.
   protected $user;
+  protected $config;
 
   /* This special function is called when instantiating a new object - it's an OOP thing.
   TO DO - Figure out what these special comments mean and what they do.. annotations? */
   /**
    * Constructs a \Drupal\bartender\Controller\BartenderController object.
    *
-   * @param $user
+   * @param \Drupal\Core\Session\UserSession $user
    */
-  public function __construct(UserSession $user) {
+  public function __construct(UserSession $userSession, ConfigFactory $configFactory) {
 
     // Here, we're just assigning the $user parameter that is passed in to the $user property we made earlier.
-    $this->user = $user;
+    $this->userSession = $userSession;
+    $this->configFactory = $configFactory;
 
   }
 
@@ -72,20 +77,40 @@ class BartenderController implements ContainerInjectionInterface {
     /* Here, we're getting and passing the container's current user object into an instantiation
       of our object (__construct). If this seems a little cyclical, it's because it is.
       This is the essence of dependency injection in Drupal 8. */
-    return new static($container->get('current_user'));
+    return new static($container->get('current_user'), $container->get('config.factory'));
 
   }
 
   // This is a function that's going to deliver content for our home page.
-  public function home() {
+  public function home(Request $request) {
 
     // Thankfully, since we're using a user object, we have access to handy functions like isAuthenticated()!
-    if ($this->user->isAuthenticated() == 1) {
-      $content = array('#markup' => 'Authenticated placeholder.');
-      return $content;
+    if ($this->userSession->isAuthenticated() == 1) {
+      $markup = '';
+      if ($this->configFactory->get('bartender.settings')->get('allow_use_profile_values') == 1) {
+        $markup .= 'Use Profile Values Button<br />' . PHP_EOL;
+      }
+      $markup .= <<<EOD
+Use Profile Values & Modify Button<br />
+Questionnaire
+EOD;
+      return array('#markup' => $markup);
     } else {
-      $content = array('#markup' => 'Anonymous placeholder.');
-      return $content;
+      // Here, we use the request object (always available as a parameter on actions) to check a cookie's existence.
+      if (!empty($request->cookies->get('bartender-questionnaire')->value)) {
+        $content = array('#markup' => <<<EOD
+Retake Questionnaire Button<br />
+Previous Results Shown
+EOD
+        );
+        return $content;
+      } else {
+        $content = array('#markup' => <<<EOD
+Questionnaire
+EOD
+        );
+        return $content;
+      }
     }
 
   }

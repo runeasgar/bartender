@@ -13,4 +13,4 @@ bartender.home:
   requirements:
     # This is how we restrict access to the route to a particular permission.
     # BROKEN - Anonymous users don't have access even though I've flipped that permission.
-    _permission: 'Use bartender'
+    _permission: 'use bartender'
