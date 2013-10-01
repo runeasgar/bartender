@@ -10,7 +10,8 @@ function bartender_menu() {
     'title' => 'Welcome to Bartender',
     'route_name' => 'bartender.home'
   );
-  $items['admin/bartender/settings'] = array(
+  // Using admin/config here will add it to the config menu.
+  $items['admin/config/bartender/settings'] = array(
     'title' => 'Bartender Settings',
     'route_name' => 'bartender.settings'
   );

@@ -21,7 +21,7 @@ class BartenderConfigForm extends SystemConfigFormBase {
   }
 
   public function getFormID() {
-    return 'bartender.config';
+    return 'bartender.settings';
   }
 
   public function buildForm(array $form, array &$form_state) {

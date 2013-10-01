@@ -15,7 +15,7 @@ bartender.home:
     _permission: 'use bartender'
 
 bartender.settings:
-  pattern: '/admin/bartender/settings'
+  pattern: '/admin/config/bartender/settings'
   defaults:
     # In this case we're routing to a form object, not a controller action.
     _form: '\Drupal\bartender\Form\BartenderConfigForm'

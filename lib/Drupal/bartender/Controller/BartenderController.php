@@ -22,6 +22,7 @@ use Drupal\Core\Session\UserSession;
 // TO DO - Describe these
 use Symfony\Component\HttpFoundation\Request;
 use Drupal\Core\Config\ConfigFactory;
+use Drupal\bartender\Form\BartenderQuestionnaire;
 
 /* LEARN THIS!
 OOP: Classes, Properties, Methods, Interfaces, Abstraction
@@ -106,11 +107,7 @@ EOD
         );
         return $content;
       } else {
-        $content = array('#markup' => <<<EOD
-Questionnaire
-EOD
-        );
-        return $content;
+        return drupal_get_form(new BartenderQuestionnaire());
       }
     }
 

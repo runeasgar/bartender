@@ -1,2 +1,2 @@
-# Files in /config are copied to active configuration on module install
+# Files in /config are copied to active configuration on module install.
 allow_use_profile_values: 1
