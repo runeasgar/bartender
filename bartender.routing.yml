@@ -11,6 +11,13 @@ bartender.home:
     # It uses namespacing, not file path. Not sure why it's called staticly.
     _content: '\Drupal\bartender\Controller\BartenderController::home'
   requirements:
-    # This is how we restrict access to the route to a particular permission.
-    # BROKEN - Anonymous users don't have access even though I've flipped that permission.
+    # This is how we restrict access to the route to a particular permission. Case sensitive!
     _permission: 'use bartender'
+
+bartender.settings:
+  pattern: '/admin/bartender/settings'
+  defaults:
+    # In this case we're routing to a form object, not a controller action.
+    _form: '\Drupal\bartender\Form\BartenderConfigForm'
+  requirements:
+    _permission: 'administer bartender'

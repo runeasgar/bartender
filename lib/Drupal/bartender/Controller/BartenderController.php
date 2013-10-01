@@ -87,6 +87,7 @@ class BartenderController implements ContainerInjectionInterface {
     // Thankfully, since we're using a user object, we have access to handy functions like isAuthenticated()!
     if ($this->userSession->isAuthenticated() == 1) {
       $markup = '';
+      // This is a basic example of reading a value from configuration.
       if ($this->configFactory->get('bartender.settings')->get('allow_use_profile_values') == 1) {
         $markup .= 'Use Profile Values Button<br />' . PHP_EOL;
       }

@@ -10,6 +10,10 @@ function bartender_menu() {
     'title' => 'Welcome to Bartender',
     'route_name' => 'bartender.home'
   );
+  $items['admin/bartender/settings'] = array(
+    'title' => 'Bartender Settings',
+    'route_name' => 'bartender.settings'
+  );
   return $items;
 }
 
