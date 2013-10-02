@@ -58,7 +58,9 @@ class BartenderController implements ContainerInjectionInterface {
   /**
    * Constructs a \Drupal\bartender\Controller\BartenderController object.
    *
-   * @param \Drupal\Core\Session\UserSession $user
+   * @param \Drupal\Core\Session\UserSession $userSession
+   * @param \Drupal\Core\Config\ConfigFactory $configFactory
+   * @internal param \Drupal\Core\Session\UserSession $user
    */
   public function __construct(UserSession $userSession, ConfigFactory $configFactory) {
 
@@ -85,7 +87,8 @@ class BartenderController implements ContainerInjectionInterface {
   // This is a function that's going to deliver content for our home page.
   public function home(Request $request) {
 
-    // Thankfully, since we're using a user object, we have access to handy functions like isAuthenticated()!
+    /* Thankfully, since we're using a user object, we have access to handy functions like isAuthenticated()!
+    Let's see if the user is authenticated, and provide them with an experience based on that. */
     if ($this->userSession->isAuthenticated() == 1) {
       $markup = '';
       // This is a basic example of reading a value from configuration.
@@ -107,7 +110,9 @@ EOD
         );
         return $content;
       } else {
-        return drupal_get_form(new BartenderQuestionnaire());
+        // And if the user isn't authenticated, and they have no cookie, they get the brand-new treatment.
+        $questionnaire = drupal_get_form(new BartenderQuestionnaire());
+        return drupal_render($questionnaire);
       }
     }
 

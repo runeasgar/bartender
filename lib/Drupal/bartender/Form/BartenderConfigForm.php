@@ -7,10 +7,11 @@ use Drupal\Core\Config\ConfigFactory;
 use Drupal\Core\Config\Context\ContextInterface;
 /* This provides us with some useful form functions, and does some container magic compared with our controller.
 Unfortunately this also makes things more confusing, because they are less consistent. */
-use Drupal\system\SystemConfigFormBase;
+use Drupal\Core\Form\ConfigFormBase;
+
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class BartenderConfigForm extends SystemConfigFormBase {
+class BartenderConfigForm extends ConfigFormBase {
 
   public function __construct(ConfigFactory $configFactory, ContextInterface $context) {
     parent::__construct($configFactory, $context);
