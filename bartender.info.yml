@@ -1,3 +1,6 @@
+# Before we do anything, here's the best resources I have found for Drupal 8 module development:
+# https://drupal.org/node/1953342 (Conversion Guide)
+# http://previousnext.com.au/blog/drupal-8-ready-whats-new-developers
 name: Bartender
 description: Bartender chooses drinks for you.
 core: 8.x

@@ -36,7 +36,7 @@ Interfaces
 
 MVC: Models, Views, Controllers
   If you haven't read up on MVC, read this:
-  http://www.sitepoint.com/the-mvc-pattern-and-php-1 */
+   */
 
 /* This is the controller that will do most of the non-hook "work" for our module.
 It implements ContainerInjectionInterface so we can get information about the user. */
@@ -102,6 +102,7 @@ class BartenderController implements ContainerInjectionInterface {
 Use Profile Values & Modify Button<br />
 Questionnaire
 EOD;
+
       return array('#markup' => $markup);
 
     } else {
@@ -114,14 +115,16 @@ Retake Questionnaire Button<br />
 Previous Results Shown
 EOD
         );
+
         return $content;
 
       } else {
 
         // And if the user isn't authenticated, and they have no cookie, they get the brand-new treatment.
         $questionnaire = drupal_get_form(new BartenderQuestionnaire());
+
         return drupal_render($questionnaire);
-        
+
       }
     }
 
