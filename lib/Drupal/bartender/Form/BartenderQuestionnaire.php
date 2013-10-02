@@ -1,4 +1,4 @@
-<?php // TO DO - Should I be using FormBase instead?
+<?php
 
 namespace Drupal\bartender\Form;
 
