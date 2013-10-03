@@ -1,0 +1,14 @@
+id: node.drink.field_bartender_liquors
+uuid: a85bd587-4e0b-49e8-a356-86e190460360
+status: '1'
+langcode: en
+field_uuid: 6b1a189d-aaa0-4105-b949-73446ed29b0b
+entity_type: node
+bundle: drink
+label: Liquors
+description: ''
+required: '0'
+default_value: {  }
+default_value_function: ''
+settings: {  }
+field_type: taxonomy_term_reference

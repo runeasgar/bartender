@@ -1,0 +1,14 @@
+id: node.field_bartender_instructions
+uuid: 830e41aa-996c-47b6-b500-0e7444941a99
+status: '1'
+langcode: en
+name: field_bartender_instructions
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+active: '1'
+locked: '0'
+cardinality: '1'
+translatable: '0'
+indexes: {  }

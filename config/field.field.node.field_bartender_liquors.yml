@@ -1,0 +1,19 @@
+id: node.field_bartender_liquors
+uuid: 6b1a189d-aaa0-4105-b949-73446ed29b0b
+status: '1'
+langcode: en
+name: field_bartender_liquors
+entity_type: node
+type: taxonomy_term_reference
+settings:
+  allowed_values:
+    -
+      vocabulary: liquors
+      parent: '0'
+  options_list_callback: ''
+module: taxonomy
+active: '1'
+locked: '0'
+cardinality: '-1'
+translatable: '0'
+indexes: {  }

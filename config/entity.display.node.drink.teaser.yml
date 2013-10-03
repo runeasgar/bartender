@@ -1,0 +1,13 @@
+id: node.drink.teaser
+uuid: bf8317b8-3acb-477c-b800-bb92a20173dc
+targetEntityType: node
+bundle: drink
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: '0'
+    settings:
+      trim_length: '600'
+status: '1'

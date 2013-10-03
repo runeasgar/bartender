@@ -1,0 +1,14 @@
+id: node.drink.field_bartender_sweetness
+uuid: 7089710e-b5d9-4fa8-b314-20a88a25cff5
+status: '1'
+langcode: en
+field_uuid: 9c173af3-0890-457f-9000-e6e174e526b5
+entity_type: node
+bundle: drink
+label: Sweetness
+description: ''
+required: '0'
+default_value: {  }
+default_value_function: ''
+settings: {  }
+field_type: taxonomy_term_reference

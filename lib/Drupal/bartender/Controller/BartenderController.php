@@ -91,30 +91,28 @@ class BartenderController implements ContainerInjectionInterface {
     Let's see if the user is authenticated, and provide them with an experience based on that. */
     if ($this->userSession->isAuthenticated() == 1) {
 
-      $markup = '';
+      $content = array('#markup' => '');
 
       // This is a basic example of reading a value from configuration.
       if ($this->configFactory->get('bartender.settings')->get('allow_use_profile_values') == 1) {
-        $markup .= 'Use Profile Values Button<br />' . PHP_EOL;
+        $content['#markup'] .= 'Use Profile Values Button<br />' . PHP_EOL;
       }
 
-      $markup .= <<<EOD
-Use Profile Values & Modify Button<br />
-Questionnaire
-EOD;
+      $content['#markup'] .= 'Use Profile Values & Modify Button<br />' . PHP_EOL;
 
-      return array('#markup' => $markup);
+      $content['questionnaire'] = drupal_get_form(new BartenderQuestionnaire());
+
+      return $content;
 
     } else {
 
       // Here, we use the request object (always available as a parameter on actions) to check a cookie's existence.
       if (!empty($request->cookies->get('bartender-questionnaire')->value)) {
 
-        $content = array('#markup' => <<<EOD
-Retake Questionnaire Button<br />
-Previous Results Shown
-EOD
-        );
+        $content = array('#markup' => 'Previous Results Shown');
+
+        $questionnaire = drupal_get_form(new BartenderQuestionnaire());
+        $content .= drupal_render($questionnaire);
 
         return $content;
 

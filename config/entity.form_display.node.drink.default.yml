@@ -1,0 +1,31 @@
+id: node.drink.default
+uuid: b5c3cc29-8977-4552-9800-c385de99d6f3
+targetEntityType: node
+bundle: drink
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: '4'
+    settings:
+      rows: '9'
+      summary_rows: '3'
+      placeholder: ''
+  field_bartender_instructions:
+    type: text_textarea
+    weight: '3'
+    settings:
+      rows: '5'
+      placeholder: ''
+  field_bartender_liquors:
+    type: options_buttons
+    weight: '1'
+    settings: {  }
+  field_bartender_sweetness:
+    type: options_select
+    weight: '2'
+    settings: {  }
+  title:
+    weight: '0'
+    visible: '1'
+status: '1'

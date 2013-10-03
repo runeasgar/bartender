@@ -1,0 +1,16 @@
+id: node.drink.body
+uuid: f2d9c548-99d2-415f-8d00-fab261b5290b
+status: '1'
+langcode: en
+field_uuid: bb67df5d-2900-4795-8e04-4fcc6edf51b0
+entity_type: node
+bundle: drink
+label: Description
+description: ''
+required: '0'
+default_value: {  }
+default_value_function: ''
+settings:
+  text_processing: '1'
+  display_summary: '0'
+field_type: text_with_summary

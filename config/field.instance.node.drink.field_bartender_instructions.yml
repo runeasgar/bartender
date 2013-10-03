@@ -1,0 +1,15 @@
+id: node.drink.field_bartender_instructions
+uuid: f9359ca2-fdde-456d-8700-e7a01bb6af19
+status: '1'
+langcode: en
+field_uuid: 830e41aa-996c-47b6-b500-0e7444941a99
+entity_type: node
+bundle: drink
+label: Instructions
+description: 'Enter the instructions for making the drink.'
+required: '0'
+default_value: {  }
+default_value_function: ''
+settings:
+  text_processing: '1'
+field_type: text_long

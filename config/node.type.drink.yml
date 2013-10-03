@@ -1,0 +1,18 @@
+type: drink
+uuid: ab592aed-6983-4d7d-9700-dbaa151378bf
+name: Drink
+description: 'Used to return results for the bartender module.'
+help: ''
+has_title: '1'
+title_label: Title
+settings:
+  node:
+    preview: '1'
+    options:
+      status: status
+      promote: '0'
+      sticky: '0'
+      revision: '0'
+    submitted: '0'
+status: '1'
+langcode: en

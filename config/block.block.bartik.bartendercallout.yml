@@ -1,0 +1,27 @@
+id: bartik.bartendercallout
+uuid: 50d34a2b-8888-4341-8e57-879fca8263c5
+weight: ''
+status: '1'
+langcode: en
+region: '-1'
+plugin: 'custom_block:bcdae8a5-61c0-42aa-ae09-9ea21385276e'
+settings:
+  status: '1'
+  info: ''
+  view_mode: full
+  label: 'Bartender Callout'
+  module: custom_block
+  label_display: visible
+  cache: '-1'
+visibility:
+  path:
+    visibility: '0'
+    pages: ''
+  role:
+    roles: {  }
+  node_type:
+    types:
+      article: '0'
+      drink: '0'
+      page: '0'
+  visibility__active_tab: edit-visibility-path

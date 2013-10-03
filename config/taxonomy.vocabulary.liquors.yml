@@ -1,0 +1,7 @@
+vid: liquors
+name: Liquors
+description: 'Used by the bartender module in its questionnaire.'
+hierarchy: '0'
+weight: '0'
+status: '1'
+langcode: en
