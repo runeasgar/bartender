@@ -5,29 +5,30 @@ namespace Drupal\bartender\Form;
 use Drupal\Core\Form\FormInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+// The form interface gives us a nice function template.
 class BartenderQuestionnaire implements FormInterface {
 
   public static function create(ContainerInterface $container) {
     return new static($container->get('config.factory'), $container->get('config.context.free'));
   }
 
+  // This defines the form's ID.
   public function getFormID() {
     return 'bartender.questionnaire';
   }
+
+  // This is where you implement form API.
   public function buildForm(array $form, array &$form_state) {
 
     $form['intro'] = array('#markup' => 'Fill out this questionnaire to get your drink recommendation!');
 
     $liquors = taxonomy_get_tree('liquors');
-    $liquor_names = array();
     foreach ($liquors as $liquor) {
-      $liquor_names[] = $liquor->name;
+      $form[$liquor->name] = array(
+        '#type' => 'checkbox',
+        '#title' => $liquor->name,
+      );
     }
-    $form['liquors'] = array(
-      '#type' => 'checkboxes',
-      '#options' => drupal_map_assoc($liquor_names),
-      '#title' => t('What liquors are acceptable?')
-    );
 
     $sweetness = taxonomy_get_tree('sweetness');
     $sweetness_levels = array();
@@ -40,15 +41,24 @@ class BartenderQuestionnaire implements FormInterface {
       '#title' => t('What sweetness level is acceptable?')
     );
 
-    $form['submit'] = array('#type' => 'submit', '#value' => t('Get your drink recommendation!'));
+    $form['submit'] = array(
+      '#type' => 'submit', '#value' => t('Get your drink recommendation!'),
+      '#executes_submit_callback' => true
+    );
     return $form;
   }
-  public function validateForm(array &$form, array &$form_state) {
 
+  // Self-explanatory validate function! Unsure whether or not the parent call is needed.. sometimes it errors.
+  public function validateForm(array &$form, array &$form_state) {
+    if ($form_state['values']['sweetness'] == "Don't Care"
+    ) {
+      echo 'must supply values';
+    }
+    parent::validateForm($form, $form_state);
   }
+
+  // Self-explanatory submit function! Unsure whether or not the parent call is needed.. sometimes it errors.
   public function submitForm(array &$form, array &$form_state) {
-    //var_dump($form_state);
-    var_dump($form);
-    return;
+    parent::submitForm($form, $form_state);
   }
 }
